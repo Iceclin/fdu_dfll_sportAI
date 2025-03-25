@@ -12,18 +12,13 @@ def login():
 def get_csv():
     return send_from_directory('.', 'data.csv')
 
-@app.route('/sports')
-def sports():
-    return send_from_directory('.', 'sports.html')
-
 @app.route('/sport')
 def sport():
     return send_from_directory('.', 'sport.html')
 
-@app.route('/vedio')
-def vedio():
-    return send_from_directory('.', 'vedio.html')
-
+@app.route('/dati')
+def dati():
+    return send_from_directory('.', 'dati.html')
 
 @app.route('/home')
 def home():
