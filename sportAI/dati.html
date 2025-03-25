@@ -22,7 +22,7 @@
         }
 
         .hero-section {
-            background: url('static/image/quiz-bg.jpg') no-repeat center center/cover;
+            background: url('static/image/background.jpeg') no-repeat center center/cover;
             color: white;
             padding: 5rem 0;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
@@ -67,12 +67,12 @@
             border-color: var(--primary-color);
         }
 
-        .option-item.correct {
+        .option-item.correct.selected {
             background: #e8f5e9 !important;
             border-color: var(--success-color) !important;
         }
 
-        .option-item.wrong {
+        .option-item.wrong.selected {
             background: #ffebee !important;
             border-color: var(--secondary-color) !important;
         }
@@ -114,9 +114,9 @@
             <div class="col-lg-3 mb-4">
                 <div class="score-board text-center sticky-top">
                     <h3 class="h4 mb-3">当前得分</h3>
-                    <div class="display-4 text-primary fw-bold">0</div>
+                    <div class="display-4 text-primary fw-bold" id="score">0</div>
                     <div class="mt-3">
-                        <div class="timer mb-3">00:30</div>
+                        <div class="timer mb-3">10:00</div>
                         <div class="progress">
                             <div class="progress-bar" style="width: 0%"></div>
                         </div>
@@ -126,23 +126,333 @@
 
             <!-- 题目区域 -->
             <div class="col-lg-9">
+                <!-- 题目 1 -->
                 <div class="quiz-card p-4">
-                    <h3 class="h4 mb-4">1. 下列哪个是化学元素周期表中第一个元素？</h3>
+                    <h3 class="h4 mb-4">1. 男子110米栏的栏架高度是多少？</h3>
                     <div class="options">
-                        <div class="option-item">氦</div>
-                        <div class="option-item correct">氢</div>
-                        <div class="option-item">氧</div>
-                        <div class="option-item">锂</div>
+                        <div class="option-item" data-correct="true">1.067米</div>
+                        <div class="option-item">0.914米</div>
+                        <div class="option-item">1.372米</div>
+                        <div class="option-item">1.200米</div>
                     </div>
                 </div>
 
+                <!-- 题目 2 -->
                 <div class="quiz-card p-4">
-                    <h3 class="h4 mb-4">2. 《蒙娜丽莎》的作者是谁？</h3>
+                    <h3 class="h4 mb-4">2. 女子标枪的重量是多少克？</h3>
                     <div class="options">
-                        <div class="option-item wrong">米开朗基罗</div>
-                        <div class="option-item">达芬奇</div>
-                        <div class="option-item">拉斐尔</div>
-                        <div class="option-item">梵高</div>
+                        <div class="option-item" data-correct="true">600克</div>
+                        <div class="option-item">800克</div>
+                        <div class="option-item">500克</div>
+                        <div class="option-item">700克</div>
+                    </div>
+                </div>
+
+                <!-- 题目 3 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">3. 冬季奥运会首次举办于哪一年？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">1924年</div>
+                        <div class="option-item">1936年</div>
+                        <div class="option-item">1900年</div>
+                        <div class="option-item">1948年</div>
+                    </div>
+                </div>
+
+                <!-- 题目 4 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">4. 网球中，“ACE球”指的是什么？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">发球直接得分，对手未能接触球</div>
+                        <div class="option-item">发球后立即上网得分</div>
+                        <div class="option-item">发球失误</div>
+                        <div class="option-item">发球后双方交换场地</div>
+                    </div>
+                </div>
+
+                <!-- 题目 5 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">5. 网球场地分为哪三种主要类型？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">草地、硬地、红土</div>
+                        <div class="option-item">沙地、木地、水泥地</div>
+                        <div class="option-item">草地、雪地、冰地</div>
+                        <div class="option-item">硬地、红土、蓝土</div>
+                    </div>
+                </div>
+
+                <!-- 题目 6 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">6. 男子体操的六个项目分别是什么？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">自由体操、鞍马、吊环、跳马、双杠、单杠</div>
+                        <div class="option-item">自由体操、跳马、平衡木、高低杠、吊环、单杠</div>
+                        <div class="option-item">鞍马、吊环、跳马、双杠、单杠、蹦床</div>
+                        <div class="option-item">自由体操、鞍马、吊环、跳马、双杠、平衡木</div>
+                    </div>
+                </div>
+
+                <!-- 题目 7 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">7. 艺术体操主要分为哪五种器械？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">圈、球、棒、绳、带</div>
+                        <div class="option-item">圈、球、棒、带、剑</div>
+                        <div class="option-item">圈、球、绳、带、扇</div>
+                        <div class="option-item">圈、棒、绳、带、轮</div>
+                    </div>
+                </div>
+
+                <!-- 题目 8 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">8. 冰球比赛中，每队上场几名球员？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">6名（包括守门员）</div>
+                        <div class="option-item">5名（包括守门员）</div>
+                        <div class="option-item">7名（包括守门员）</div>
+                        <div class="option-item">8名（包括守门员）</div>
+                    </div>
+                </div>
+
+                <!-- 题目 9 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">9. 第一届现代奥运会于哪一年、哪个城市举行？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">1896年，雅典</div>
+                        <div class="option-item">1900年，巴黎</div>
+                        <div class="option-item">1888年，伦敦</div>
+                        <div class="option-item">1892年，罗马</div>
+                    </div>
+                </div>
+
+                <!-- 题目 10 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">10. 奥林匹克五环标志代表什么？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">五大洲的团结和世界各国运动员在奥运会上相聚</div>
+                        <div class="option-item">五种主要运动项目</div>
+                        <div class="option-item">五个奥运会主办城市</div>
+                        <div class="option-item">五种比赛颜色</div>
+                    </div>
+                </div>
+
+                <!-- 题目 11 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">11. 马拉松比赛的全程是多少公里？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">42.195公里</div>
+                        <div class="option-item">40公里</div>
+                        <div class="option-item">45公里</div>
+                        <div class="option-item">50公里</div>
+                    </div>
+                </div>
+
+                <!-- 题目 12 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">12. 田径比赛中，接力赛一队有几名选手？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">4名选手</div>
+                        <div class="option-item">3名选手</div>
+                        <div class="option-item">5名选手</div>
+                        <div class="option-item">6名选手</div>
+                    </div>
+                </div>
+
+                <!-- 题目 13 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">13. 跳高比赛中，横杆的高度每次至少增加多少厘米？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">2厘米（国际规则）</div>
+                        <div class="option-item">1厘米</div>
+                        <div class="option-item">5厘米</div>
+                        <div class="option-item">3厘米</div>
+                    </div>
+                </div>
+
+                <!-- 题目 14 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">14. 撑杆跳高需要使用的撑杆主要由哪种材料制成？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">玻璃纤维或碳纤维</div>
+                        <div class="option-item">木头</div>
+                        <div class="option-item">铝合金</div>
+                        <div class="option-item">钢材</div>
+                    </div>
+                </div>
+
+                <!-- 题目 15 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">15. 网球大满贯赛事有哪些？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">澳网、法网、温网、美网</div>
+                        <div class="option-item">澳网、日网、温网、美网</div>
+                        <div class="option-item">法网、英网、德网、美网</div>
+                        <div class="option-item">澳网、法网、温网、意网</div>
+                    </div>
+                </div>
+
+                <!-- 题目 16 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">16. 冬奥会的滑雪项目分为哪三大类？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">高山滑雪、越野滑雪、跳台滑雪</div>
+                        <div class="option-item">高山滑雪、速度滑雪、花样滑雪</div>
+                        <div class="option-item">越野滑雪、跳台滑雪、自由滑雪</div>
+                        <div class="option-item">高山滑雪、冰面滑雪、跳台滑雪</div>
+                    </div>
+                </div>
+
+                <!-- 题目 17 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">17. 网球大满贯中，唯一采用红土场地的赛事是哪个？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">法国网球公开赛（法网）</div>
+                        <div class="option-item">澳大利亚网球公开赛（澳网）</div>
+                        <div class="option-item">温布尔登网球锦标赛（温网）</div>
+                        <div class="option-item">美国网球公开赛（美网）</div>
+                    </div>
+                </div>
+
+                <!-- 题目 18 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">18. 网球比赛中的“抢七”规则是什么？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">当一盘比分达到 6-6 时，采用抢七局，先得 7 分并领先至少 2 分者获胜该盘</div>
+                        <div class="option-item">一盘比分达到 5-5 时，先得 6 分者获胜</div>
+                        <div class="option-item">每盘结束时必须进行，先得 7 分者获胜</div>
+                        <div class="option-item">当比分达到 6-6 时，直接比拼发球得分</div>
+                    </div>
+                </div>
+
+                <!-- 题目 19 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">19. 国际乒联（ITTF）规定的乒乓球直径是多少毫米？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">40毫米</div>
+                        <div class="option-item">38毫米</div>
+                        <div class="option-item">42毫米</div>
+                        <div class="option-item">45毫米</div>
+                    </div>
+                </div>
+
+                <!-- 题目 20 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">20. 乒乓球比赛中，发球时球必须离开手至少多少厘米？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">16厘米</div>
+                        <div class="option-item">10厘米</div>
+                        <div class="option-item">20厘米</div>
+                        <div class="option-item">12厘米</div>
+                    </div>
+                </div>
+
+                <!-- 题目 21 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">21. 中国运动员张继科在多长时间内完成了大满贯？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">445天</div>
+                        <div class="option-item">365天</div>
+                        <div class="option-item">500天</div>
+                        <div class="option-item">600天</div>
+                    </div>
+                </div>
+
+                <!-- 题目 22 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">22. 羽毛球拍的重量通常在多少克之间？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">80-100克</div>
+                        <div class="option-item">60-80克</div>
+                        <div class="option-item">100-120克</div>
+                        <div class="option-item">70-90克</div>
+                    </div>
+                </div>
+
+                <!-- 题目 23 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">23. 羽毛球比赛中，一个回合结束后必须换发球方的情况是什么？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">当接发球方得分时</div>
+                        <div class="option-item">当发球方得分时</div>
+                        <div class="option-item">每隔5分换发球</div>
+                        <div class="option-item">每局结束后换发球</div>
+                    </div>
+                </div>
+
+                <!-- 题目 24 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">24. 羽毛球比赛中，最高比分可以达到多少分？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">30分（必须领先2分，若29平则先到30分获胜）</div>
+                        <div class="option-item">21分</div>
+                        <div class="option-item">25分</div>
+                        <div class="option-item">15分</div>
+                    </div>
+                </div>
+
+                <!-- 题目 25 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">25. 女子体操的四项比赛项目是什么？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">自由体操、跳马、高低杠、平衡木</div>
+                        <div class="option-item">自由体操、鞍马、吊环、跳马</div>
+                        <div class="option-item">跳马、高低杠、平衡木、单杠</div>
+                        <div class="option-item">自由体操、跳马、双杠、平衡木</div>
+                    </div>
+                </div>
+
+                <!-- 题目 26 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">26. 现代体操起源于哪个国家？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">德国</div>
+                        <div class="option-item">法国</div>
+                        <div class="option-item">英国</div>
+                        <div class="option-item">美国</div>
+                    </div>
+                </div>
+
+                <!-- 题目 27 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">27. 体操比赛中，得分以什么为标准？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">难度分（D分）和完成分（E分）</div>
+                        <div class="option-item">速度分和艺术分</div>
+                        <div class="option-item">力量分和技巧分</div>
+                        <div class="option-item">时间分和表现分</div>
+                    </div>
+                </div>
+
+                <!-- 题目 28 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">28. 短道速滑的比赛场地周长是多少米？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">111.12米</div>
+                        <div class="option-item">100米</div>
+                        <div class="option-item">120米</div>
+                        <div class="option-item">150米</div>
+                    </div>
+                </div>
+
+                <!-- 题目 29 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">29. 冬奥会中的“双人雪车”比赛每辆雪车有几名选手？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">2名选手（驾驶员和刹车手）</div>
+                        <div class="option-item">3名选手</div>
+                        <div class="option-item">4名选手</div>
+                        <div class="option-item">1名选手</div>
+                    </div>
+                </div>
+
+                <!-- 题目 30 -->
+                <div class="quiz-card p-4">
+                    <h3 class="h4 mb-4">30. 世界三大体育赛事通常指哪些？</h3>
+                    <div class="options">
+                        <div class="option-item" data-correct="true">奥运会、世界杯足球赛、F1世界一级方程式锦标赛</div>
+                        <div class="option-item">奥运会、网球大满贯、NBA总决赛</div>
+                        <div class="option-item">世界杯足球赛、超级碗、环法自行车赛</div>
+                        <div class="option-item">奥运会、冬奥会、世界田径锦标赛</div>
                     </div>
                 </div>
             </div>
@@ -152,27 +462,56 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            let score = 0; // 初始化得分
+            const totalQuestions = $('.quiz-card').length; // 总题目数
+            const pointsPerQuestion = 10; // 每题10分
+
             // 选项点击交互
             $('.option-item').click(function() {
-                if (!$(this).hasClass('correct') && !$(this).hasClass('wrong')) {
+                const $options = $(this).parent('.options');
+                // 检查该题是否已作答
+                if ($options.hasClass('answered')) return; // 如果已作答，阻止重复点击
+
+                $(this).addClass('selected');
+                $options.addClass('answered'); // 标记该题已作答
+
+                if ($(this).attr('data-correct') === 'true') {
+                    $(this).addClass('correct');
+                    score += pointsPerQuestion; // 正确答案加分
+                    $('#score').text(score); // 更新得分显示
+                } else {
                     $(this).addClass('wrong');
-                    $(this).siblings('.correct').addClass('correct');
+                    $options.find('[data-correct="true"]').addClass('correct selected'); // 显示正确答案
                 }
+
+                // 更新进度条
+                const answeredQuestions = $('.options.answered').length;
+                const progressPercentage = (answeredQuestions / totalQuestions) * 100;
+                updateProgress(progressPercentage);
             });
 
-            // 更新进度条
+            // 更新进度条函数
             function updateProgress(percentage) {
                 $('.progress-bar').css('width', percentage + '%');
             }
 
-            // 计时器功能
-            let timeLeft = 30;
+            // 计时器功能（10分钟 = 600秒）
+            let timeLeft = 600; // 10分钟
             const timer = setInterval(() => {
                 timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
                 $('.timer').text(
-                    `00:${timeLeft.toString().padStart(2, '0')}`
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
                 );
-                if(timeLeft <= 0) clearInterval(timer);
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    $('.timer').text('时间到！');
+                    $('.option-item').off('click'); // 时间到后禁用点击
+                    $('.options:not(.answered)').each(function() {
+                        $(this).find('[data-correct="true"]').addClass('correct selected'); // 显示所有未答题的正确答案
+                    });
+                }
             }, 1000);
         });
     </script>
