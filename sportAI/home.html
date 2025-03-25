@@ -2822,7 +2822,7 @@
                             <a href="/" class="nav-link active">退出登录</a></li>
                         <li id="menu-item-68"
                             class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-68 nav-item"><a
-                                href="#" class="nav-link">我的锻炼</a>
+                            id="map-link" href="#" class="nav-link">我的锻炼</a>
                         </li>
                         <!--这里-->
                         <li id="menu-item-109"
@@ -3591,6 +3591,9 @@
 
             const link5 = document.getElementById('sport-link');
             link5.href = 'sport?Id=' + encodeURIComponent(Id);
+
+            const link6 = document.getElementById('map-link');
+            link6.href = 'map_demo?Id=' + encodeURIComponent(Id);
         </script>
 </body>
 </html>
