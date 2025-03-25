@@ -20,6 +20,10 @@ def sport():
 def dati():
     return send_from_directory('.', 'dati.html')
 
+@app.route('/map_demo')
+def map_demo():
+    return send_from_directory('.', 'map_demo.html')
+
 @app.route('/home')
 def home():
     return send_from_directory('.', 'home.html')
