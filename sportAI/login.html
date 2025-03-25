@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统一登录</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <script src="static/js/jquery-3.7.1.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body style="background-image: url('static/image/background.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+
+<div class="container bg-body-secondary rounded-3 p-5 shadow" style="margin-top: 130px; width: 400px; padding: 5px">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane"
+                    type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>外文学院AI体育登录界面
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+             tabindex="0">
+            <form class="row g-3" method="post" action="/readerlogin/" style="margin: 10px">
+                <div class="col-md-12">
+                    <input class="form-control" type="text" placeholder="学号" name="id"
+                           style="margin: 10px">
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" type="password" placeholder="密码" name="rpswd" style="margin: 10px">
+                </div>
+                <div class="col-md-12">
+                    <select class="form-select" id="languageSelect" style="margin: 10px">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                        <option value="fr">Français</option>
+                        <option value="es">Español</option>
+                        <option value="ru">Русский</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국인</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary" style="margin: 10px">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 读取 CSV 文件并验证用户信息
+    function validateLogin() {
+        const Id = document.querySelector('input[name="id"]').value;
+        const password = document.querySelector('input[name="rpswd"]').value;
+        const language = document.querySelector('#languageSelect').value;
+
+        fetch('data.csv')
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split('\n');
+                let isValid = false;
+
+                for (let row of rows) {
+                    const columns = row.split(',');
+                    if (columns[0] === Id && columns[2] === password) {
+                        isValid = true;
+                        break;
+                    }
+                }
+
+                if (isValid) {
+                    // 根据选择的语言跳转到不同的界面
+                    let redirectUrl;
+                    switch(language){
+                        case "zh":
+                            redirectUrl = '/home?Id=' + encodeURIComponent(Id);
+                            break;
+                        case "en":
+                            redirectUrl = '/homeen?Id=' + encodeURIComponent(Id);
+                            break;
+                        case "de":
+                            redirectUrl = '/homede?Id=' + encodeURIComponent(Id);
+                            break;
+                        case "fr":
+                            redirectUrl = '/homefr?Id=' + encodeURIComponent(Id);
+                            break;
+                        case "es":
+                            redirectUrl = '/homees?Id=' + encodeURIComponent(Id);
+                            break;
+                        case "ja":
+                            redirectUrl = '/homeja?Id=' + encodeURIComponent(Id);
+                            break;
+                        case "ko":
+                            redirectUrl = '/homeko?Id=' + encodeURIComponent(Id);
+                            break;
+                        case "ru":
+                            redirectUrl = '/homeru?Id=' + encodeURIComponent(Id);
+                            break;
+                        default:
+                            redirectUrl = '/home?Id=' + encodeURIComponent(Id);
+                    } 
+                    window.location.href = redirectUrl;
+                } else {
+                    alert('学号或密码错误！');
+                }
+            })
+            .catch(error => console.error('读取 CSV 文件时出错:', error));
+    }
+
+    // 修改表单提交事件
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止默认提交
+        validateLogin(); // 调用验证函数
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Футбольный турнир факультетов Университета Фудань</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #D32F2F;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        body {
+            background: var(--background-gradient);
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('static/image/football1.jpg') center/cover;
+            color: white;
+            padding: 5rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -4rem;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: none;
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .btn-football {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-football:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+        }
+
+        .rules-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timeline-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- 顶部横幅 -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-3">Футбольный турнир факультетов Университета Фудань</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="material-icons me-2">sports_soccer</i>
+                <p class="lead mb-0">19 октября 2024 г. - 8 декабря 2024 г. | Стадион на улице Го Фу Лу</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основное содержание -->
+    <main class="container py-5">
+        <!-- Карточка с информацией о соревнованиях -->
+        <div class="material-card p-4">
+            <div class="text-center mb-4">
+                <i class="material-icons section-icon">event_available</i>
+                <h2>Информация о соревнованиях</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>Время</h4>
+                        <p class="text-muted">2024.10.19-12.8</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>Место</h4>
+                        <p class="text-muted">Стадион на улице Го Фу Лу / Стадион Цзяньвань</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>Формат соревнования</h4>
+                        <p class="text-muted">8 человек в команде</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>Категории</h4>
+                        <p class="text-muted">Команды бакалавров / Команды магистрантов</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правила участия -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">assignment</i>
+                <h3>Правила участия</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Категория бакалавров</h4>
+                    <ul class="rules-list list-unstyled">
+                        <li><strong>Регистрация по факультетам</strong><br> Бакалавры, не определившие свою специальность, должны зарегистрироваться в команду, соответствующую факультету, который курирует их учебную группу. Бакалавры программы «Шахуэй» могут выбрать команду в любой из следующих категорий: естественные науки (математика, физика, химия, биология) или инженерия (информатика, микроэлектроника, компьютерные науки). Студенты факультета спортивного образования и Международного института культурного обмена могут регистрироваться как легионеры в любую команду, ограничение по легионерам указано ниже. Студенты других факультетов, не упомянутых в правилах, должны обратиться в Футбольную ассоциацию Университета Фудань для уточнения деталей регистрации.</li>
+                        <li><strong>Заявка на объединённую команду (необходима проверка)</strong><br> Команды одного факультета могут подать заявку на объединение с другими командами. Заявка подаётся в обычном порядке, и количество участников не должно превышать 5 человек, при этом необходимо указать просьбу об объединении команд в заявке. После окончания регистрации Футбольная ассоциация Университета Фудань проведет проверку и на основе баланса количества участников и схожести направлений определит состав объединённых команд. Команды, занявшие места с 1 по 4 на предыдущем турнире, не могут подавать заявки на объединение.</li>
+                        <li>Названия команд будут скорректированы в зависимости от числа зарегистрированных участников каждого факультета.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Категория магистрантов</h4>
+                    <ul class="rules-list list-unstyled">
+                        <li>Регистрация по факультетам
+Студенты магистратуры (кроме обменных студентов, регистрация по номеру студенческого билета) должны формировать команды по факультетам, кафедрам или центрам (далее «факультеты») или могут объединяться с максимум одним другим факультетом. Организация объединённой команды полностью лежит на факультетах, рекомендуется заранее обсудить состав команд между факультетами. Команды, занявшие места с 1 по 4 на предыдущем турнире, не могут подавать заявки на объединение или менять состав команды.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Требования к регистрации -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">how_to_reg</i>
+                <h3>Требования к участникам</h3>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5>Требования к участникам</h5>
+                    <ul class="rules-list list-unstyled">
+                        <li>Каждая команда должна иметь капитана. Капитан должен быть преподавателем или студентом соответствующего факультета, может быть выбран из числа игроков команды. Капитан является официальным представителем команды и отвечает за регистрацию, жеребьёвку, получение уведомлений, подачи заявок и апелляций, а также участие в арбитраже.</li>
+                        <li>Каждая команда может зарегистрировать от 10 до 17 игроков, включая не более 3 легионеров, при этом на поле может быть не более 2 легионеров одновременно.</li>
+                        <li>Игроки должны быть в единой форме. Форма должна иметь ярко выраженные отличия по цвету и не должна быть черной или близкой к черному. На футболках должен быть номер (от 1 до 99), который должен быть напечатан на спине.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>Требования к материалам</h5>
+                    <ul class="rules-list list-unstyled">
+                        <li>Каждая команда должна заполнить электронную форму заявки и назвать её в формате «2024 Факультетский Кубок (бак/маг) – Название команды». Заявку необходимо отправить по электронной почте на адрес Футбольной ассоциации Университета Фудань: thefdfa@163.com с использованием университетского почтового адреса. Тема письма должна совпадать с названием заявки.</li>
+                        <li>Заявки, не прошедшие проверку, должны быть исправлены и повторно поданы. Заявки, не поданные в срок, считаются отклонёнными. Если заявка подана несколько раз, учитывается последняя версия, позднее отправленные заявки не принимаются. После окончания регистрации состоится предварительное совещание и жеребьёвка команд, подробности будут сообщены позже.</li>
+                        <li><strong>Сроки регистрации</strong><br>
+
+                            Для бакалавров: 13 октября 2024 года (воскресенье), 22:00<br>
+                            
+                            Для магистрантов: 19 октября 2024 года (суббота), 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-football" id="registerBtn">
+                    <i class="material-icons me-2">send</i>
+                    Зарегистрироваться сейчас
+                </button>
+            </div>
+        </div>
+
+        <!-- Контакты -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">contacts</i>
+                <h3>Контакты</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Электронная почта: thefdfa@163.com</p>
+                    <p>Ван Сюхэн: 22301010113@m.fudan.edu.cn</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="static/js/jquery-3.7.1.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('Id');
+
+        // 获取用户数据
+    let userName = '';
+    $.ajax({
+        url: 'data.csv',
+        dataType: 'text',
+        success: function(data) {
+            const rows = data.split('\n');
+            rows.forEach(row => {
+                const cols = row.split(',');
+                if(cols[0] === userId) {
+                    userName = cols[1];
+                }
+            });
+        }
+    });
+
+        $('#registerBtn').click(function() {
+            if(!userId) {
+                Swal.fire('错误', '未找到用户信息', 'error');
+                return;
+            }
+
+            Swal.fire({
+                title: `Добро пожаловать${userName}в команду!`,
+                text: 'Вы получили 5 баллов активности',
+            
+                icon: 'success',
+                confirmButtonText: 'Подтвердить',
+                customClass: {
+                    popup: 'border-radius-20'
+                }
+            });
+
+            // 发送更新请求
+            fetch('/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: userId })
+            });
+        });
+    });
+    </script>
+</body>
+</html>

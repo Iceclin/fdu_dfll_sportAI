@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>復旦大学開学健康ラン</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1976D2;
+            --secondary-color: #D32F2F;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        body {
+            background: var(--background-gradient);
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero-section {
+            background: url('static/image/pao1.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 4rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -5rem;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .image-gallery {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img {
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery:hover img {
+            transform: scale(1.05);
+        }
+
+        .btn-material {
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-material:hover {
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .text-muted {
+            color: #666 !important;
+        }
+
+        .list-unstyled li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .list-unstyled li:last-child {
+            border-bottom: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- 顶部横幅 -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-3">復旦大学開学健康ラン</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="material-icons me-2">directions_run</i>
+                <p class="lead mb-0">2024年9月28日 | 南区スポーツセンター</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="container py-5">
+        <!-- 活动简介卡片 -->
+        <div class="material-card p-4">
+            <div class="text-center mb-4">
+                <i class="material-icons section-icon">event</i>
+                <h2 class="h4">イベント概要</h2>
+            </div>
+            <p class="text-muted">2022年から、毎年国慶節の祝日に、五大書院の教師と学生が健康ランイベントに参加し、青春と情熱を走るステップに注ぎ込み、健康な体と元気な精神で祖国の誕生日を祝います。</p>
+        </div>
+
+        <!-- 时间地点卡片 -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="material-card p-4 h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="material-icons me-2">schedule</i>
+                        <h3 class="h5 mb-0">スケジュール</h3>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="h6">8:00 AM</h4>
+                        <p class="text-muted mb-0">受付</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="h6">9:00 AM</h4>
+                        <p class="text-muted mb-0">スタートの合図</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="material-card p-4 h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="material-icons me-2">place</i>
+                        <h3 class="h5 mb-0">イベント会場</h3>
+                    </div>
+                    <div class="image-gallery">
+                        <img src="static/image/pao2.jpg" alt="ルートマップ" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注意事项卡片 -->
+        <div class="material-card p-4 mt-4">
+            <div class="d-flex align-items-center mb-3">
+                <i class="material-icons me-2">warning</i>
+                <h3 class="h5 mb-0">注意事項</h3>
+            </div>
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    <i class="material-icons text-danger me-2">error</i>
+                    イベント誓約書の署名が必要です
+                </li>
+                <li class="mb-3">
+                    <i class="material-icons text-danger me-2">error</i>
+                    心血管疾患のある方は参加できません
+                </li>
+                <li class="mb-3">
+                    <i class="material-icons text-danger me-2">error</i>
+                    体調が優れない方はご参加をお控えください
+                </li>
+            </ul>
+            <div class="text-center">
+                <button class="btn btn-material" id="registerBtn">
+                    <i class="material-icons me-2">edit</i>
+                    今すぐ申し込む
+                </button>
+            </div>
+        </div>
+
+        <!-- 活动图集 -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons me-2">photo_camera</i>
+                <h3 class="h5 mb-0">過去のイベントのハイライト</h3>
+            </div>
+            <div class="image-gallery">
+                <img src="static/image/pao1.jpg" alt="イベント写真" class="img-fluid">
+            </div>
+        </div>
+    </main>
+
+    <script src="static/js/jquery-3.7.1.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+$(document).ready(function() {
+    // 解析URL参数
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('Id');
+
+    // 获取用户数据
+    let userName = '';
+    $.ajax({
+        url: 'data.csv',
+        dataType: 'text',
+        success: function(data) {
+            const rows = data.split('\n');
+            rows.forEach(row => {
+                const cols = row.split(',');
+                if(cols[0] === userId) {
+                    userName = cols[1];
+                }
+            });
+        }
+    });
+
+    // 报名按钮点击事件
+    $('#registerBtn').click(function() {
+        if(!userId) {
+            Swal.fire('エラー', 'ユーザー情報が見つかりません', 'error');
+            return;
+        }
+
+        Swal.fire({
+            title: `おめでとう${userName}申し込み成功!`,
+            text: '5ポイントのイベントポイントを獲得しました',
+            icon: 'success',
+            showConfirmButton: false,
+            background: 'var(--background-gradient)',
+            timer: 2000,
+            showClass: {
+                popup: 'animate__animated animate__zoomIn'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__zoomOut'
+            }
+        });
+
+        // 发送更新请求
+        fetch('/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: userId })
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+</script>
+</body>
+</html>

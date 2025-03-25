@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournoi Inter-facultés de Football de l'Université Fudan</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #D32F2F;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        body {
+            background: var(--background-gradient);
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('static/image/football1.jpg') center/cover;
+            color: white;
+            padding: 5rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -4rem;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: none;
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .btn-football {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-football:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+        }
+
+        .rules-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timeline-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- 顶部横幅 -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-3">Tournoi Inter-facultés de Football de l'Université Fudan</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="material-icons me-2">sports_soccer</i>
+                <p class="lead mb-0">Du 19 octobre au 8 décembre 2024 | Stade de football sur route de Guofu</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="container py-5">
+        <!-- 赛事信息卡片 -->
+        <div class="material-card p-4">
+            <div class="text-center mb-4">
+                <i class="material-icons section-icon">event_available</i>
+                <h2>Informations sur l’événement</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>Temps de jeu</h4>
+                        <p class="text-muted">2024.10.19-12.8</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>地点</h4>
+                        <p class="text-muted">Stade de football de Guofu Road/Jiangwan</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>Format</h4>
+                        <p class="text-muted">Compétition de football à huit</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>Circonscriptions</h4>
+                        <p class="text-muted">Groupe des étudiants de premier cycle/cycles supérieurs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 参赛要求卡片 -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">assignment</i>
+                <h3>Instructions d’inscription</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>>Groupe des étudiants de premier cycle</h4>
+                    <ul class="rules-list list-unstyled">
+                        <li><strong>S’inscrire en équipe par collège</strong><br> Les étudiants de premier cycle de la classe expérimentale de la catégorie majeure qui n’ont pas encore déterminé la majeure doivent s’inscrire dans l’équipe correspondante du service de tutelle ; Les étudiants de premier cycle de l’Académie Xianghui doivent s’inscrire dans n’importe quelle équipe de sciences (mathématiques, physique, chimie, biologie) ou d’ingénierie (information, microélectronique, informatique) en fonction de la classe expérimentale à laquelle ils appartiennent ; Les étudiants de premier cycle du Département d’éducation physique et de l’École d’échanges culturels internationaux peuvent s’inscrire dans n’importe quelle équipe en tant qu’aide étrangère, et les restrictions de l’aide étrangère sont ci-dessous. Les étudiants de premier cycle des unités d’entraînement non mentionnées doivent contacter l’Association de football de l’Université Fudan pour confirmer l’équipe d’inscription.</li>
+                        <li><strong>Peut postuler pour une aile (sous réserve d’examen)</strong><br> Les équipes d’un seul département peuvent postuler à l’Association de football de l’Université Fudan. Si l’équipe postule pour l’équipe, l’inscription doit être effectuée selon les procédures normales, et le nombre de candidats doit être inférieur à 5, et la candidature pour l’équipe doit être indiquée dans l’e-mail. La Fédération de football de Fudan examinera l’équipe après la date limite d’inscription et déterminera la liste des équipes selon le principe du nombre équilibré et des disciplines similaires. Les quatre meilleures équipes de ce groupe lors du tournoi précédent ne sont pas éligibles pour postuler pour l’équipe.</li>
+                        <li>Le nom de l’équipe sera ajusté en fonction du nombre réel de candidats pour chaque département correspondant.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Groupe des étudiants des cycles supérieurs</h4>
+                    <ul class="rules-list list-unstyled">
+                        <li>Les étudiants des cycles supérieurs qualifiés (à l’exclusion des étudiants d’échange, sous réserve du nombre d’étudiants) doivent postuler en équipe avec leurs collèges (départements, instituts, centres, etc., ci-après appelés « facultés »), ou avec au plus une autre faculté. Le travail de l’équipe est effectué indépendamment par chaque département, et il est recommandé que les équipes de football de chaque département communiquent entre elles avant l’inscription. Les quatre meilleures équipes de ce groupe lors du tournoi précédent ne sont pas autorisées à postuler ou à changer d’équipe.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- 报名信息卡片 -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">how_to_reg</i>
+                <h3>Conditions d’entrée :</h3>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5>Besoins en personnel</h5>
+                    <ul class="rules-list list-unstyled">
+                        <li>Chaque équipe doit avoir 1 chef d’équipe. Le chef d’équipe doit être un enseignant et un étudiant du département correspondant de l’équipe, et peut être servi en même temps que par les athlètes de l’équipe. Le chef d’équipe est le seul représentant de l’équipe et est responsable de l’inscription, du dessin, de la réception des avis, des demandes, des appels, de la participation à l’arbitrage, etc.</li>
+                        <li>Chaque équipe peut compter 10 à 17 athlètes, dont pas plus de 3 aides étrangères et pas plus de 2 aides étrangères sur le terrain de chaque équipe.</li>
+                        <li>Combinaisons de course et chaussettes de la même couleur à votre choix. Les hauts ne doivent pas être noirs ou de couleur similaire, et doivent être numérotés au dos, avec une plage de chiffres de 1 à 99.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>Exigences en matière de matériaux</h5>
+                    <ul class="rules-list list-unstyled">
+                        <li>Chaque équipe remplit la version électronique du formulaire d’inscription en stricte conformité avec les exigences, nommées « 2024院系杯 (Premier/Recherche) 报名表-Nom de l’équipe», et avant la date limite spécifiée, le chef d’équipe utilisera la boîte aux lettres Fudan pour envoyer le formulaire d’inscription à l’Association de football de Fudan : thefdfa@163.com, et l’objet de l’e-mail est le même que le nom du fichier du formulaire d’inscription.</li>
+                        <li>Si les documents de candidature ne passent pas l’examen, ils seront révisés et soumis à nouveau à temps si nécessaire, et ceux qui ne le font pas à temps seront réputés avoir renoncé à leurs qualifications. S’il y a plusieurs soumissions, la dernière prévaudra et les soumissions tardives ne seront pas acceptées.
+
+                            Une fois l’inscription terminée, une réunion conjointe pré-compétition aura lieu selon le groupe, et la loterie aura lieu en même temps, et l’heure et le lieu seront notifiés séparément.</li>
+                        <li><strong>Date limite de présentation des demandes</strong><br>
+
+                            Groupe d’étudiants de premier cycle : 13 octobre 2024 (dimanche) 22:00<br>
+                            
+                            Groupe d’étudiants des cycles supérieurs : 19 octobre 2024 (samedi) 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-football" id="registerBtn">
+                    <i class="material-icons me-2">send</i>
+                    Inscrivez-vous maintenant
+                </button>
+            </div>
+        </div>
+
+        <!-- 联系方式卡片 -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">contacts</i>
+                <h3>Contactez-nous</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>boîte aux lettres：thefdfa@163.com</p>
+                    <p>Wang shuheng：22301010113@m.fudan.edu.cn</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="static/js/jquery-3.7.1.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('Id');
+
+        // 获取用户数据
+    let userName = '';
+    $.ajax({
+        url: 'data.csv',
+        dataType: 'text',
+        success: function(data) {
+            const rows = data.split('\n');
+            rows.forEach(row => {
+                const cols = row.split(',');
+                if(cols[0] === userId) {
+                    userName = cols[1];
+                }
+            });
+        }
+    });
+
+        $('#registerBtn').click(function() {
+            if(!userId) {
+                Swal.fire('erreur', 'Veuillez d’abord vous connecter au système', 'error');
+                return;
+            }
+
+            Swal.fire({
+                title: `Félicitations pour inscription réussie de${userName}!`,
+            text: 'Vous avez gagné 5 points d’activité',
+            
+                icon: 'success',
+                confirmButtonText: 'Valider',
+                customClass: {
+                    popup: 'border-radius-20'
+                }
+            });
+
+            // 提交报名请求
+            fetch('/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: userId })
+            });
+        });
+    });
+    </script>
+</body>
+</html>

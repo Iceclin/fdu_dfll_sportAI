@@ -1,0 +1,7 @@
+{"results":[{
+    "location":{"id":"WTW3SJ5ZBJUY",
+    "name":"上海","country":"CN",
+    "path":"上海,上海,中国",
+    "timezone":"Asia/Shanghai","timezone_offset":"+08:00"},
+    "daily":[{
+        "date":"2025-03-02","text_day":"晴","code_day":"0","text_night":"小雨","code_night":"13","high":"28","low":"10","rainfall":"2.54","precip":"0.58","wind_direction":"无持续风向","wind_direction_degree":"","wind_speed":"8.4","wind_scale":"2","humidity":"84"},{"date":"2025-03-03","text_day":"小雨","code_day":"13","text_night":"中雨","code_night":"14","high":"16","low":"7","rainfall":"6.73","precip":"0.89","wind_direction":"无持续风向","wind_direction_degree":"","wind_speed":"8.4","wind_scale":"2","humidity":"89"},{"date":"2025-03-04","text_day":"小雨","code_day":"13","text_night":"多云","code_night":"4","high":"9","low":"5","rainfall":"0.23","precip":"0.37","wind_direction":"无持续风向","wind_direction_degree":"","wind_speed":"3.0","wind_scale":"1","humidity":"89"}],"last_update":"2025-03-02T08:00:00+08:00"}]}

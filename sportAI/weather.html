@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气预报</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 天气页面样式 */
+        :root {
+            --primary-color: #1976D2;
+            --secondary-color: #D32F2F;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        body {
+            background: var(--background-gradient);
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .weather-container {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem;
+        }
+
+        .weather-card {
+            display: flex;
+            flex-direction: column;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            min-width: 200px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .weather-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .weather-card .day-section,
+        .weather-card .night-section {
+            flex: 1;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .weather-card .day-section {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .weather-card .night-section {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            color: white;
+            z-index: 2;
+        }
+
+        .temp {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .low {
+            color: #1976D2;
+        }
+
+        .high {
+            color: #D32F2F;
+        }
+
+        /* AI 对话框样式 */
+        .chat-container {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .chat-container header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-container header .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .chat-container .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .chat-container .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+
+        .chat-container .user-message {
+            background-color: #e0f7fa;
+            align-self: flex-start;
+        }
+
+        .chat-container .bot-message {
+            background-color: #e1bee7;
+            align-self: flex-end;
+        }
+
+        .chat-container .input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-container #userInput {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .chat-container button {
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .chat-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 打开 AI 对话框的按钮 */
+        .chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .chat-toggle-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h3 class="text-center mb-4">天气预报</h3>
+        <div class="weather-container" id="weather-info">
+            <!-- 天气信息动态渲染 -->
+        </div>
+    </div>
+
+    <!-- AI 对话框 -->
+    <div class="chat-container" id="chat-container">
+        <header>
+            Kimi ChatBot
+            <button class="close-btn" onclick="toggleChat()">×</button>
+        </header>
+        <div class="messages" id="messages"></div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="请输入内容..." />
+            <button onclick="sendMessage()">对话</button>
+        </div>
+    </div>
+
+    <!-- 打开 AI 对话框的按钮 -->
+    <button class="chat-toggle-btn" onclick="toggleChat()">💬</button>
+
+    <script>
+        // 天气数据逻辑
+        const apiKey = 'SNFr0qpRbC-X8mDx_'; 
+        const apiUrl = `https://api.seniverse.com/v3/weather/daily.json?key=${apiKey}&location=shanghai&language=zh-Hans&unit=c&start=-1&days=5`;
+
+        async function fetchWeather() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                return data.results[0].daily;
+            } catch (error) {
+                console.error('获取天气数据失败:', error);
+                return [];
+            }
+        }
+
+        function getWeatherIcon(condition) {
+            const icons = {
+                '晴': 'wb_sunny',
+                '多云': 'cloud',
+                '小雨': 'umbrella',
+                '中雨': 'flash_on',
+                '雪': 'ac_unit',
+            };
+            return icons[condition] || 'cloud_queue';
+        }
+
+        function getWeatherBackground(condition) {
+            const backgrounds = {
+                '晴': 'static/image/weather/sunny.webp',
+                '多云': 'static/image/weather/cloudy.jpeg',
+                '小雨': 'static/image/weather/rainy.png',
+                '中雨': 'static/image/weather/thunder.jpeg',
+                '雪': 'static/image/weather/snowy.jpeg',
+            };
+            return backgrounds[condition] || 'static/images/weather/default.jpg';
+        }
+
+        function renderWeather(dailyData) {
+            const weatherInfo = document.getElementById('weather-info');
+            weatherInfo.innerHTML = '';
+            dailyData.forEach(day => {
+                const weatherCard = document.createElement('div');
+                weatherCard.className = 'weather-card';
+                weatherCard.innerHTML = `
+                    <div class="day-section" style="background-image: url('${getWeatherBackground(day.text_day)}')">
+                        <div class="weather-icon">
+                            <i class="material-icons">${getWeatherIcon(day.text_day)}</i>
+                        </div>
+                        <h5>${day.date} 白天</h5>
+                        <p>${day.text_day}</p>
+                        <p class="temp"><span class="high">${day.high}°C</span></p>
+                    </div>
+                    <div class="night-section" style="background-image: url('${getWeatherBackground(day.text_night)}')">
+                        <div class="weather-icon">
+                            <i class="material-icons">${getWeatherIcon(day.text_night)}</i>
+                        </div>
+                        <h5>${day.date} 晚上</h5>
+                        <p>${day.text_night}</p>
+                        <p class="temp"><span class="low">${day.low}°C</span></p>
+                    </div>
+                `;
+                weatherInfo.appendChild(weatherCard);
+            });
+        }
+
+        async function initWeather() {
+            const dailyData = await fetchWeather();
+            if (dailyData.length > 0) {
+                renderWeather(dailyData);
+            } else {
+                document.getElementById('weather-info').innerHTML = '<p class="text-muted">无法获取天气数据</p>';
+            }
+        }
+
+        // AI 对话框逻辑
+        function toggleChat() {
+            const chatContainer = document.getElementById('chat-container');
+            if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+                chatContainer.style.display = 'flex';
+            } else {
+                chatContainer.style.display = 'none';
+            }
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            if (!userInput.trim()) return;
+
+            const messagesContainer = document.getElementById('messages');
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.classList.add('message', 'user-message');
+            userMessageDiv.textContent = userInput;
+            messagesContainer.appendChild(userMessageDiv);
+
+            document.getElementById('userInput').value = '';
+
+            const waitingMessageDiv = document.createElement('div');
+            waitingMessageDiv.classList.add('waiting-message');
+            waitingMessageDiv.textContent = '...';
+            messagesContainer.appendChild(waitingMessageDiv);
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userInput })
+                });
+                const data = await response.json();
+
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.classList.add('message', 'bot-message');
+                botMessageDiv.textContent = data.reply;
+
+                messagesContainer.replaceChild(botMessageDiv, waitingMessageDiv);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        document.getElementById('userInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', initWeather);
+    </script>
+</body>
+</html>

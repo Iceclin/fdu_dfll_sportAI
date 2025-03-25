@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>復旦大学書院カップチアリーディング大会</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #E91E63;
+            --secondary-color: #FFC107;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, #fff5f5 0%, #ffe5e6 100%);
+        }
+
+        body {
+            background: var(--background-gradient);
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            line-height: 1.7;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                        url('static/image/lalacao1.jpg') center/cover;
+            color: white;
+            padding: 6rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -3rem;
+        }
+
+        .pom-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: none;
+        }
+
+        .pom-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .section-icon {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-stage {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-stage::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .btn-cheer {
+            background: linear-gradient(135deg, var(--primary-color), #C2185B);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-cheer:hover {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .award-badge {
+            background: var(--secondary-color);
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- 顶部横幅 -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">「書院カップ」キャンパスチアリーディング大会</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="material-icons me-3">celebration</i>
+                <p class="lead mb-0">青春のエネルギーを咲かせ、復旦の魅力を舞い上げる</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="container py-5">
+        <!-- 赛事流程卡片 -->
+        <div class="pom-card p-4">
+            <div class="text-center mb-5">
+                <i class="material-icons section-icon">schedule</i>
+                <h2 class="h1">大会スケジュール</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="timeline-stage">
+                        <h3 class="h4 text-primary">一次審査</h3>
+                        <p>各学部・学科が一次審査の時間を個別に設定</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="timeline-stage">
+                        <h3 class="h4 text-primary">準決勝</h3>
+                        <p>晋级前8名队伍<br>（書院1位＋高得点の3チーム）</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="timeline-stage">
+                        <h3 class="h4 text-primary">決勝戦</h3>
+                        <p>时间待定<br>チーム対抗戦を追加</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 参赛要求卡片 -->
+        <div class="pom-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">groups</i>
+                <h2 class="h1">参加条件</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded">
+                        <h4 class="text-primary">パフォーマンス要件</h4>
+                        <ul class="list-unstyled">
+                            <li>▶ オリジナルチアリーディング：1'45"-2'15"</li>
+                            <li>▶ 選択可能なスタイル：ポンポン/ストリートダンス/クラシックジャズ</li>
+                            <li>▶ キャプテン対抗戦にはインタラクティブな要素を含めること</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded">
+                        <h4 class="text-primary">团队要求</h4>
+                        <ul class="list-unstyled">
+                            <li>▶ 人数：8-24人</li>
+                            <li>▶ 第二のスタイルのパフォーマンスを準備すること</li>
+                            <li>▶ 統一された衣装とスタイル</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 奖励机制卡片 -->
+        <div class="pom-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">military_tech</i>
+                <h2 class="h1"></h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="award-badge">
+                        <h4>団体賞</h4>
+                        <p>優勝/準優勝/第三位のトロフィー<br>ベスト8の証明書</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="award-badge">
+                        <h4>個人表彰</h4>
+                        <p>最優秀キャプテン<br>最も魅力的な賞</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="award-badge">
+                        <h4>特別特典</h4>
+                        <p>参加するとトレーニング回数が減ります<br>人気投票の賞</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 报名区块 -->
+        <div class="pom-card p-4 text-center">
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <i class="material-icons section-icon me-3">campaign</i>
+                <h2 class="h1">今すぐ申し込む</h2>
+            </div>
+            <p class="lead mb-4">締切日：10月13日24:00</p>
+            <button class="btn btn-cheer btn-lg" id="registerBtn">
+                <i class="material-icons me-2">edit</i>
+                今すぐ活気あるチームに参加しよう！
+            </button>
+        </div>
+    </main>
+
+    <script src="static/js/jquery-3.7.1.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('Id');
+
+        // 获取用户数据
+        let userName = '';
+        $.ajax({
+            url: 'data.csv',
+            dataType: 'text',
+            success: function(data) {
+                const rows = data.split('\n');
+                rows.forEach(row => {
+                    const cols = row.split(',');
+                    if(cols[0] === userId) {
+                        userName = cols[1];
+                    }
+                });
+            }
+        });
+
+        $('#registerBtn').click(function() {
+            if(!userId) {
+                Swal.fire('ヒント', 'まずキャンパスアカウントにログインしてください', 'info');
+                return;
+            }
+
+            Swal.fire({
+                title: `${userName}の参加を歓迎します！`,
+                html: `<div class="text-primary">
+                    <i class="material-icons display-4">celebration</i>
+                    <p class="mt-3">チアリーディング選手の列に参加しました</p>
+                    <small>今後の選考通知にご注意ください</small>
+                </div>`,
+                confirmButtonText: '活気ある旅を始めましょう',
+                customClass: {
+                    popup: 'border-radius-20',
+                    confirmButton: 'btn-cheer'
+                }
+            });
+
+            // 提交报名请求
+            fetch('/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: userId })
+            });
+        });
+    });
+    </script>
+</body>
+</html>

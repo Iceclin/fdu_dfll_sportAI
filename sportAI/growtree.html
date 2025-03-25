@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>一起种树</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            background: transparent; /* 移除背景 */
+        }
+        
+        .tree-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .tree-img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* 让图片铺满屏幕 */
+            position: absolute;
+        }
+        
+        
+        
+        .waterdrop {
+            width: 80px;
+            height: 80px;
+            background-image: url('static/image/water.png');
+            background-size: cover;
+            position: absolute;
+            pointer-events: auto;
+            z-index: 10; /* 确保水滴可见 */
+        }
+        
+        .waterdrop {
+            width: 80px;
+            height: 80px;
+            {% comment %} background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 5c-15 25-30 40-30 60 0 20 15 35 30 35s30-15 30-35c0-20-15-35-30-60z" fill="%2344B3FF"/></svg>'); {% endcomment %}
+            background-image: url('static/image/water.png');
+            background-size: cover;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px; /* 设置字体大小 */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* 添加文字阴影 */
+            font-weight: bold;
+            transition: all 0.3s;
+            position: absolute;
+            pointer-events: auto;
+            animation: float 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 5px 8px rgba(68, 179, 255, 0.3));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .progress-container {
+            position: fixed; /* 改为固定定位 */
+            bottom: 20px;   /* 定位到底部 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            padding: 10px 20px;
+            background: rgba(40, 60, 40, 0.8); /* 半透明深绿色背景 */
+            border-radius: 20px;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* 添加自然阴影 */
+        }
+
+        /* 修改进度条样式 */
+        .progress {
+            height: 25px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.2); /* 半透明背景 */
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(45deg, #4CAF90, #81C7A4); /* 更自然的绿色渐变 */
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .mascot-container {
+        position: fixed;  /* 改为固定定位 */
+        bottom: 25vh;     /* 使用视口高度单位 */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10000;    /* 高于进度条的9999 */
+        transition: bottom 0.3s;
+    }
+
+    /* 保持原有悬浮效果 */
+    .mascot-img:hover {
+        transform: scale(1.1) translateY(-10px); /* 添加向上位移 */
+    }
+
+        .mascot-img {
+            width: 400px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        
+
+        .deco-cloud {
+            position: absolute;
+            width: 150px;
+            height: 60px;
+            background: white;
+            border-radius: 40px;
+            animation: cloudMove 20s linear infinite;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.05));
+        }
+
+        @keyframes cloudMove {
+            from { left: -20%; }
+            to { left: 120%; }
+        }
+
+        .water-particle {
+            width: 12px;
+            height: 12px;
+            background: rgba(68, 179, 255, 0.8);
+            position: absolute;
+            border-radius: 50%;
+            animation: particle 1s ease-out forwards;
+        }
+
+        @keyframes particle {
+            0% { transform: scale(1); opacity: 1; }
+            100% { 
+                transform: 
+                    translate(
+                        calc((Math.random() - 0.5) * 100px),
+                        calc((Math.random() - 1) * 150px)
+                    )
+                    scale(0);
+                opacity: 0;
+            }
+        }
+        .chat-container {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    width: 380px;
+    height: 60vh; 
+    background: rgba(234, 242, 228, 0.65) !important; /* 调整透明度 */
+    border: 2px solid rgba(141, 181, 150, 0.7); /* 边框半透明 */
+    border-radius: 20px 20px 0 20px; /* 左下角更圆润 */
+    box-shadow: 0 8px 32px rgba(40, 80, 30, 0.2);
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 10001;
+    backdrop-filter: blur(5px);
+    font-family: 'Comic Sans MS', cursive;
+    transform: none; /* 移除居中定位 */
+    margin: 0; /* 清除默认外边距 */
+    max-height: 800px;  /* 设置最大高度 */
+    min-height: 400px;  /* 设置最小高度 */
+}
+
+        .chat-container::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #8db596;
+}
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            max-height: 250px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2) !important; /* 更透明 */
+            border-radius: 10px;
+            
+        }
+
+        .message {
+            margin: 20px 0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            word-break: break-word;
+            animation: popIn 0.3s ease-out;
+        }
+
+        .user-message {
+            background: rgba(195, 232, 210, 0.8) !important; /* 原色+透明度 */
+    align-self: flex-end;  /* 确保右对齐 */
+    margin-left: auto;     /* 强制右对齐 */
+    margin-right: 10px;    /* 添加右侧间距 */
+    border-radius: 15px 5px 15px 15px; /* 右侧圆角更明显 */
+    max-width: 85%;        /* 限制最大宽度 */
+}
+
+/* 添加箭头装饰增强右对齐效果 */
+.user-message::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #c3e8d2;
+}
+
+        .bot-message {
+            background: rgba(240, 247, 218, 0.8) !important; /* 原色+透明度 */
+            border: 1px solid rgba(216, 230, 195, 0.5); /* 边框半透明 */
+            align-self: flex-start;
+           
+            box-shadow: 2px 2px 5px rgba(50,100,50,0.1);
+            position: relative;
+        }
+
+        .bot-message::before {
+            content: '🌿';
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            font-size: 20px;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.7) !important;
+    border: 2px solid rgba(141, 181, 150, 0.5);
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .chat-button {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8db596, #6a9c78);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .chat-button::after {
+            content: '🌱';
+            margin-left: 8px;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .typing-animation {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #8db596;
+            border-radius: 50%;
+            margin: 0 3px;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="deco-cloud"></div>
+    <div class="deco-birds"></div>
+
+    
+
+    <div class="tree-container">
+        <img id="tree" class="tree-img" src="">
+        <div id="waterdrops" class="waterdrops-container"></div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress">
+            <div id="progressBar" class="progress-bar bg-success" role="progressbar"></div>
+        </div>
+    </div>
+  
+
+    <div id="mascot" class="mascot-container">
+        <img id="mascot-img" src="static/image/mascot1.png" alt="吉祥物" class="mascot-img">
+    </div>
+
+    <!-- 对话框 -->
+    <div id="chat-container" class="chat-container">
+        <div id="messages" class="messages"></div>
+        <div class="input-group">
+            <input type="text" id="userInput" placeholder="输入你想对松小语说的话..." class="chat-input">
+            <button onclick="sendMessage()" class="chat-button">发送</button>
+        </div>
+    </div>
+   
+    <!-- <button onclick="toggleChat()" class="chat-toggle-button">打开对话框</button> -->
+
+   
+
+    <script>
+        // 初始化
+        async function init() {
+            const loader = document.createElement('lottie-player');
+            loader.src = 'https://assets1.lottiefiles.com/packages/lf20_raiw2hpe.json';
+            loader.style.width = '200px';
+            loader.style.margin = 'auto';
+            document.body.prepend(loader);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('Id');
+
+            if (!userId) {
+                alert("缺少用户ID");
+                return;
+            }
+
+            const user = await getUserData(userId);
+            if (!user) {
+                alert("用户不存在");
+                return;
+            }
+
+            loader.remove();
+            updateTree(user.credit);
+            updateProgress(user.credit);
+            createWaterdrops(user.activity, user);
+        }
+
+        // 获取用户数据
+        async function getUserData(userId) {
+            try {
+                const response = await fetch(`/get_user_data?id=${userId}`);
+                if (!response.ok) throw new Error('用户数据获取失败');
+                return await response.json();
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
+
+        // 更新树形态和吉祥物
+        // 更新树形态和吉祥物位置
+       // 更新进度条
+function updateProgress(credit) {
+    const progressBar = document.getElementById('progressBar');
+    const progress = (credit / 50) * 100;
+    progressBar.style.width = `${progress}%`;
+    progressBar.innerHTML = `${credit}/50 积分`;
+}
+
+// 更新树和水滴
+function updateTree(credit) {
+    const treeImg = document.getElementById('tree');
+    const progressBar = document.getElementById('progressBar');
+    const mascotImg = document.getElementById('mascot-img');
+    const mascotContainer = document.getElementById('mascot');
+    const waterdropsContainer = document.getElementById('waterdrops');
+
+    progressBar.style.width = `${(credit / 50) * 100}%`;
+    progressBar.innerHTML = `${credit}/50 积分`;
+
+    if (credit < 20) {
+        treeImg.src = 'static/image/tree1.png';
+        mascotImg.src = 'static/image/mascot1.png';
+        mascotContainer.style.top = '50%';
+        mascotContainer.style.left = '60%';
+        mascotImg.style.width = '200px';
+    } else if (credit < 40) {
+        treeImg.src = 'static/image/tree2.png';
+        mascotImg.src = 'static/image/ma_3.png';
+        mascotContainer.style.top = '40%';
+        mascotContainer.style.left = '70%';
+        mascotImg.style.width = '300px';
+    } else {
+        treeImg.src = 'static/image/tree3.png';
+        mascotImg.src = 'static/image/mascot2.png';
+        mascotContainer.style.top = '40%';
+        mascotContainer.style.left = '70%';
+        mascotImg.style.width = '400px';
+
+        const staticDrop = document.getElementById('static-waterdrop');
+        if (staticDrop) staticDrop.remove();
+
+        const displayDrop = document.createElement('img');
+        displayDrop.src = 'static/image/water.png';
+        displayDrop.id = 'static-waterdrop';
+        displayDrop.style.position = 'absolute';
+        displayDrop.style.left = '79%';
+        displayDrop.style.top = '60%';
+        displayDrop.style.width = '60px';
+        displayDrop.style.height = '60px';
+        displayDrop.style.zIndex = '20';
+        waterdropsContainer.appendChild(displayDrop);
+    }
+}
+
+
+        // 创建水滴
+        function createWaterdrops(activityCount, user) {
+            const container = document.getElementById('waterdrops');
+            container.innerHTML = '';
+            
+            const treeHeight = document.getElementById('tree').clientHeight;
+
+            for (let i = 0; i < activityCount; i++) {
+                const x = (Math.random() - 0.5) * 400;
+                const y = (Math.random() - 0.5) * 300 - 100;
+
+                const drop = document.createElement('div');
+                drop.className = 'waterdrop';
+                drop.innerHTML = '5积分';
+                drop.style.left = `calc(50% + ${x}px)`;
+                drop.style.top = `calc(40% + ${y}px + ${treeHeight * 0.05}px)`; // 水滴调低
+                drop.style.setProperty('--delay', Math.random() * 2);
+
+                drop.addEventListener('click', async (event) => {
+                    try {
+                        const response = await fetch('/update_credit', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({userId: user.id}),
+                        });
+
+                        if (!response.ok) throw new Error('积分更新失败');
+
+                        const result = await response.json();
+                        user.credit = result.newCredit;
+
+                        const particles = 5;
+                        for(let i=0; i<particles; i++){
+                            const particle = document.createElement('div');
+                            particle.className = 'water-particle';
+                            particle.style.left = `${event.clientX}px`;
+                            particle.style.top = `${event.clientY}px`;
+                            document.body.appendChild(particle);
+                            setTimeout(() => particle.remove(), 1000);
+                        }
+
+                        drop.style.transform = 'scale(0)';
+                        setTimeout(() => {
+                            drop.remove();
+                            updateTree(user.credit);
+                            updateProgress(user.credit);
+                        }, 300);
+                    } catch (error) {
+                        console.error(error);
+                        alert('积分更新失败');
+                    }
+                });
+
+                container.appendChild(drop);
+            }
+        }
+
+        function showMascotMessage(message) {
+            const dialog = document.getElementById('mascot-dialog');
+            dialog.innerText = message;
+            dialog.style.display = 'block';
+            setTimeout(() => dialog.style.display = 'none', 2000);
+        }
+
+// ai吉祥物对话
+function toggleChat() {
+    const chatContainer = document.getElementById('chat-container');
+    if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+        chatContainer.style.display = 'flex';
+    } else {
+        chatContainer.style.display = 'none';
+    }
+}
+
+async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            if (!userInput.trim()) return;
+
+            const messagesContainer = document.getElementById('messages');
+            
+            // 添加用户消息
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.classList.add('message', 'user-message');
+            userMessageDiv.textContent = userInput;
+            messagesContainer.appendChild(userMessageDiv);
+
+            document.getElementById('userInput').value = '';
+
+            // 添加等待动画
+            const waitingDiv = document.createElement('div');
+            waitingDiv.classList.add('message', 'bot-message');
+            waitingDiv.innerHTML = `
+                <div class="typing-animation">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            `;
+            messagesContainer.appendChild(waitingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            try {
+                const response = await fetch('http://localhost:3001/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userInput })
+                });
+                const data = await response.json();
+
+                // 移除等待动画并添加回复
+                messagesContainer.removeChild(waitingDiv);
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.classList.add('message', 'bot-message');
+                botMessageDiv.textContent = data.reply;
+                messagesContainer.appendChild(botMessageDiv);
+
+            } catch (error) {
+                messagesContainer.removeChild(waitingDiv);
+                const errorDiv = document.createElement('div');
+                errorDiv.classList.add('message', 'bot-message');
+                errorDiv.textContent = '🦉 松小语正在休息，稍后再试试吧~';
+                messagesContainer.appendChild(errorDiv);
+            }
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+function showMascotMessage(message) {
+    const mascotContainer = document.getElementById('mascot');
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    bubble.textContent = message;
+
+    // 定位气泡在吉祥物旁边
+    const mascotRect = mascotContainer.getBoundingClientRect();
+    bubble.style.left = `${mascotRect.left + mascotRect.width + 10}px`;
+    bubble.style.top = `${mascotRect.top}px`;
+
+    document.body.appendChild(bubble);
+
+    // 根据消息长度计算显示时间
+    const minDisplayTime = 3000; // 最小显示时间：3秒
+    const maxDisplayTime = 10000; // 最大显示时间：10秒
+    const timePerCharacter = 150; // 每个字符的显示时间：100毫秒
+
+    // 计算总显示时间
+    const displayTime = Math.min(
+        maxDisplayTime,
+        Math.max(minDisplayTime, message.length * timePerCharacter)
+    );
+
+    // 移除气泡
+    setTimeout(() => {
+        bubble.remove();
+    }, displayTime);
+}
+
+document.getElementById('userInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// 让聊天框可拖动
+function makeChatDraggable() {
+    const chatContainer = document.getElementById('chat-container');
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    // 鼠标按下时开始拖动
+    chatContainer.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - chatContainer.getBoundingClientRect().left;
+        offsetY = e.clientY - chatContainer.getBoundingClientRect().top;
+    });
+
+    // 鼠标移动时更新位置
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            chatContainer.style.left = `${x}px`;
+            chatContainer.style.top = `${y}px`;
+        }
+    });
+
+    // 鼠标松开时停止拖动
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+}
+
+document.getElementById('mascot').addEventListener('click', () =>{
+    showMascotMessage("今天要坚持环保哦！")
+    toggleChat();
+    
+    // 初始化时调用
+    makeChatDraggable();
+} );
+
+// 页面加载时初始化
+window.onload = function() {
+    init();
+    
+    // 强制显示对话框用于定位测试
+    // toggleChat(); // 正式使用时需要注释掉这行
+    
+    // 确保对话框完全可见
+    const chatContainer = document.getElementById('chat-container');
+    const checkVisibility = () => {
+        const rect = chatContainer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // 如果对话框高度超过视口
+        if (rect.height > viewportHeight - 40) { // 40px底部留白
+            chatContainer.style.maxHeight = `${viewportHeight - 60}px`;
+            chatContainer.style.overflowY = 'auto';
+        }
+    };
+    
+    // 监听窗口变化
+    window.addEventListener('resize', checkVisibility);
+    checkVisibility();
+};
+    </script>
+</body>
+</html>

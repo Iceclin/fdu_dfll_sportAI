@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>復旦大学学部カップサッカー大会</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #D32F2F;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        body {
+            background: var(--background-gradient);
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('static/image/football1.jpg') center/cover;
+            color: white;
+            padding: 5rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -4rem;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: none;
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .btn-football {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-football:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+        }
+
+        .rules-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timeline-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- 顶部横幅 -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-3">復旦大学学部カップサッカー大会</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="material-icons me-2">sports_soccer</i>
+                <p class="lead mb-0">2024年10月19日-12月8日 | 国福路サッカー場</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="container py-5">
+        <!-- 赛事信息卡片 -->
+        <div class="material-card p-4">
+            <div class="text-center mb-4">
+                <i class="material-icons section-icon">event_available</i>
+                <h2>大会情報</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>時間</h4>
+                        <p class="text-muted">2024.10.19-12.8</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>地点</h4>
+                        <p class="text-muted">国福路/江湾サッカー場</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>試合形式</h4>
+                        <p class="text-muted">8人制試合</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="timeline-item">
+                        <h4>组别</h4>
+                        <p class="text-muted">学部生グループ/大学院生グループ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 参赛要求卡片 -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">assignment</i>
+                <h3>参加に関する注意事項</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>学部生グループ</h4>
+                    <ul class="rules-list list-unstyled">
+                        <li><strong>学部ごとにチームを組んで申し込む</strong><br> 専門が未確定の大類試験クラスの学部生は、ホスト学部の対応チームに申し込んでください。相輝学堂の学部生は、所属する試験クラスに基づき、理系（数学、物理、化学、生物）または工系（情報、マイクロエレクトロニクス、コンピュータ）のいずれかのチームに申し込んでください。体育教学部および国際文化交流学院の学部生は、外部選手として、いずれかのチームに申し込むことができますが、外部選手の制限については後述します。記載されていない教育単位の学部生は、復旦大学サッカー協会に連絡して、申し込むチームを確認してください。</li>
+                        <li><strong>合同チームの申請が可能（審査あり）</strong><br>  単一学部のチームは、復旦大学サッカー協会に合同チームの申請を提出できます。合同チームを申請する場合、通常の手順で申し込みを行い、申し込み人数は5人未満とし、メールに合同チームの申請を明記してください。復旦サッカー協会は、申し込み締切後に審査を行い、人数のバランスや学科の近さを考慮して合同チームのリストを決定します。前回大会の該当カテゴリーで上位4位以内のチームは合同チームの申請ができません。</li>
+                        <li>チーム名は、各対応学部の実際の申し込み人数に基づいて調整されます。</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>大学院生グループ</h4>
+                    <ul class="rules-list list-unstyled">
+                        <li>資格を満たす大学院生（交換留学生を除く、学籍番号を基準とする）は、所属する学院（学部、研究所、センターなどの教育単位、以下「院系」）ごとにチームを組んで申し込むか、最大1つの他の院系と合同チームを組んで申し込むことができます。合同チームの編成は各院系が自主的に行い、各院系のサッカーチームは申し込み前に互いに連絡を取ることを推奨します。前回大会の該当カテゴリーで上位4位以内のチームは、合同チームの申請または変更ができません。</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- 报名信息卡片 -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">how_to_reg</i>
+                <h3>申し込み条件</h3>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5>参加者の条件</h5>
+                    <ul class="rules-list list-unstyled">
+                        <li>各チームには1人のリーダーを設定する必要があります。リーダーは、そのチームの対応院系の教員または学生でなければならず、チームの選手が兼任することも可能です。リーダーはチームの唯一の代表者であり、申し込み、抽選、通知の受領、申請、異議申し立て、仲裁への参加などを担当します。</li>
+                        <li>各チームは10～17人の選手を登録でき、そのうち外部選手は3人以内とし、試合中の外部選手は2人以内とします。</li>
+                        <li>統一された色のユニフォームとソックスを各自で決定してください。上衣は黒色または類似の色を使用せず、背中には必ず番号を記載し、番号の範囲は1～99とします。</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>提出書類の要件</h5>
+                    <ul class="rules-list list-unstyled">
+                        <li>各チームは、電子版の申込書を厳密に記入し、「2024院系カップ（学部/大学院）申込書-チーム名」というファイル名で保存し、指定の締切日までに、リーダーが復旦大学のメールアドレスを使用して、申込書を復旦サッカー協会（thefdfa@163.com）に送信してください。メールの件名は申込書のファイル名と一致させてください。</li>
+                        <li>申込書類の審査に通過しなかった場合、指定された通りに修正し、再提出する必要があります。再提出が遅れた場合、参加資格を放棄したものとみなします。複数回提出された場合は、最後に提出されたものを有効とし、締切後の提出は受け付けません。
+
+                            申し込み終了後、カテゴリーごとに事前説明会を開催し、同時に抽選を行います。日時と場所は別途通知します。</li>
+                        <li><strong>締切日</strong><br>
+
+                            学部生グループ：2024年10月13日（日曜日）22:00<br>
+                            
+                            大学院生グループ：2024年10月19日（土曜日）22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-football" id="registerBtn">
+                    <i class="material-icons me-2">send</i>
+                    今すぐ申し込む
+                </button>
+            </div>
+        </div>
+
+        <!-- 联系方式卡片 -->
+        <div class="material-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">contacts</i>
+                <h3>お問い合わせ</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>メールアドレス：thefdfa@163.com</p>
+                    <p>王叙衡：22301010113@m.fudan.edu.cn</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="static/js/jquery-3.7.1.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('Id');
+
+        // 获取用户数据
+    let userName = '';
+    $.ajax({
+        url: 'data.csv',
+        dataType: 'text',
+        success: function(data) {
+            const rows = data.split('\n');
+            rows.forEach(row => {
+                const cols = row.split(',');
+                if(cols[0] === userId) {
+                    userName = cols[1];
+                }
+            });
+        }
+    });
+
+        $('#registerBtn').click(function() {
+            if(!userId) {
+                Swal.fire('エラー', 'まずシステムにログインしてください', 'error');
+                return;
+            }
+
+            Swal.fire({
+                title: `おめでとう${userName}申し込み成功!`,
+            text: '5ポイントのイベントポイントを獲得しました',
+            
+                icon: 'success',
+                confirmButtonText: '確認',
+                customClass: {
+                    popup: 'border-radius-20'
+                }
+            });
+
+            // 提交报名请求
+            fetch('/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: userId })
+            });
+        });
+    });
+    </script>
+</body>
+</html>

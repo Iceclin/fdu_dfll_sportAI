@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Шуюйань Кубок" Кампус Чирлидинг Соревнования</title>
+    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #E91E63;
+            --secondary-color: #FFC107;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, #fff5f5 0%, #ffe5e6 100%);
+        }
+
+        body {
+            background: var(--background-gradient);
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            line-height: 1.7;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                        url('static/image/lalacao1.jpg') center/cover;
+            color: white;
+            padding: 6rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -3rem;
+        }
+
+        .pom-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: none;
+        }
+
+        .pom-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .section-icon {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-stage {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-stage::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .btn-cheer {
+            background: linear-gradient(135deg, var(--primary-color), #C2185B);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-cheer:hover {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .award-badge {
+            background: var(--secondary-color);
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+
+    <!-- 顶部横幅 -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">"Шуюйань Кубок" Кампус Чирлидинг Соревнования</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <i class="material-icons me-3">celebration</i>
+                <p class="lead mb-0">Цвети молодостью, танцуй в стиле Фуданя</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="container py-5">
+        <!-- 赛事流程卡片 -->
+        <div class="pom-card p-4">
+            <div class="text-center mb-5">
+                <i class="material-icons section-icon">schedule</i>
+                <h2 class="h1">Расписание мероприятий</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="timeline-stage">
+                        <h3 class="h4 text-primary">Этап предварительного отбора</h3>
+                        <p>Каждый факультет самостоятельно организует время для предварительного отбора</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="timeline-stage">
+                        <h3 class="h4 text-primary">Полуфинал</h3>
+                        <p>8 лучших команд проходят в следующий этап<br>(1-е место на факультете + 3 команды с наивысшими баллами)</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="timeline-stage">
+                        <h3 class="h4 text-primary">Финал</h3>
+                        <p>Время будет определено позже<br>Добавлен этап командного PK</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 参赛要求卡片 -->
+        <div class="pom-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">groups</i>
+                <h2 class="h1">Требования к участникам</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded">
+                        <h4 class="text-primary">Требования к выступлению</h4>
+                        <ul class="list-unstyled">
+                            <li>▶ Длительность собственного чирлидинг выступления: 1'45" - 2'15"</li>
+                            <li>▶ Возможные стили: цветочные мячи / уличные танцы / классический джаз</li>
+                            <li>▶ В PK-этапе с капитаном команды должно быть включено взаимодействие</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded">
+                        <h4 class="text-primary">Требования к команде</h4>
+                        <ul class="list-unstyled">
+                            <li>▶ Число участников: 8-24 человека</li>
+                            <li>▶ Необходимо подготовить выступление в другом стиле</li>
+                            <li>▶ Единный костюм и стиль для всей команды</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 奖励机制卡片 -->
+        <div class="pom-card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="material-icons section-icon me-3">military_tech</i>
+                <h2 class="h1">Награды</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="award-badge">
+                        <h4>Командные награды</h4>
+                        <p>Кубки для победителей (1-е, 2-е, 3-е место)<br>Сертификаты для 8 лучших команд</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="award-badge">
+                        <h4>Личные награды</h4>
+                        <p>Лучший капитан<br>Самый стильный командный член</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="award-badge">
+                        <h4>Особые привилегии</h4>
+                        <p>Участие в соревновании засчитывается как тренировка<br>Награды за популярность (по итогам голосования)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 报名区块 -->
+        <div class="pom-card p-4 text-center">
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <i class="material-icons section-icon me-3">campaign</i>
+                <h2 class="h1">Зарегистрироваться сейчас</h2>
+            </div>
+            <p class="lead mb-4">Крайний срок регистрации: 13 октября, 24:00</p>
+            <button class="btn btn-cheer btn-lg" id="registerBtn">
+                <i class="material-icons me-2">edit</i>
+                Присоединяйся к команде энергии прямо сейчас!
+            </button>
+        </div>
+    </main>
+
+    <script src="static/js/jquery-3.7.1.min.js"></script>
+    <script src="static/plugins/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('Id');
+
+        // 获取用户数据
+        let userName = '';
+        $.ajax({
+            url: 'data.csv',
+            dataType: 'text',
+            success: function(data) {
+                const rows = data.split('\n');
+                rows.forEach(row => {
+                    const cols = row.split(',');
+                    if(cols[0] === userId) {
+                        userName = cols[1];
+                    }
+                });
+            }
+        });
+
+        $('#registerBtn').click(function() {
+            if(!userId) {
+                Swal.fire('Подсказка', 'Пожалуйста, войдите в свою учетную запись кампуса', 'info');
+                return;
+            }
+
+            Swal.fire({
+                title: `Добро пожаловать${userName}в команду!`,
+                html: `<div class="text-primary">
+                    <i class="material-icons display-4">celebration</i>
+                    <p class="mt-3">Вы успешно присоединились к списку участников чирлидинга</p>
+                    <small>Пожалуйста, следите за дальнейшими уведомлениями о отборе</small>
+                </div>`,
+                confirmButtonText: 'Начать энергичное путешествие',
+                customClass: {
+                    popup: 'border-radius-20',
+                    confirmButton: 'btn-cheer'
+                }
+            });
+
+            // 提交报名请求
+            fetch('/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: userId })
+            });
+        });
+    });
+    </script>
+</body>
+</html>
