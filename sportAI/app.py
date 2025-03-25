@@ -138,8 +138,8 @@ def update_csv():
     updated = False
     for row in rows:
         if row[0] == user_id:
-            # 倒数第二列加1
-            row[-2] = str(int(row[-2]) + 1)
+            # 倒数第一列加1
+            row[-1] = str(int(row[-1]) + 1)
             updated = True
             break
     
